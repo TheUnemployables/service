@@ -5,7 +5,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -16,7 +15,7 @@ public class CartEntity{
     private String userID;
     private List<CartItem> items;
     private CartStatus status;
-    private LocalDateTime createdAt;
+    private Instant createdAt;
 
     public enum CartStatus { OPEN, SUBMITTED }
 

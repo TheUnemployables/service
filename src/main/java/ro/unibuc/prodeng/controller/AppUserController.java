@@ -1,5 +1,7 @@
 package ro.unibuc.prodeng.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +12,7 @@ import ro.unibuc.prodeng.exception.EntityNotFoundException;
 import ro.unibuc.prodeng.request.ForgotPasswordRequest;
 import ro.unibuc.prodeng.request.LoginRequest;
 import ro.unibuc.prodeng.request.RegisterRequest;
+import ro.unibuc.prodeng.response.AppUserResponse;
 import ro.unibuc.prodeng.response.LoginResponse;
 import ro.unibuc.prodeng.service.AppUserService;
 
@@ -19,6 +22,11 @@ import ro.unibuc.prodeng.service.AppUserService;
 public class AppUserController {
 
     private final AppUserService appUserService;
+
+    @GetMapping("/")
+    public ResponseEntity<List<AppUserResponse>> getAllUsers() {
+        return ResponseEntity.ok(appUserService.getAllUsers());
+    }
 
     @PostMapping("/register")
     public ResponseEntity<LoginResponse> register(@Valid @RequestBody RegisterRequest req) {

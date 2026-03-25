@@ -1,5 +1,8 @@
 package ro.unibuc.prodeng.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +13,7 @@ import ro.unibuc.prodeng.repository.AppUserRepository;
 import ro.unibuc.prodeng.request.ForgotPasswordRequest;
 import ro.unibuc.prodeng.request.LoginRequest;
 import ro.unibuc.prodeng.request.RegisterRequest;
+import ro.unibuc.prodeng.response.AppUserResponse;
 import ro.unibuc.prodeng.response.LoginResponse;
 import ro.unibuc.prodeng.utils.JwtUtil;
 
@@ -20,6 +24,12 @@ public class AppUserService {
     private final AppUserRepository appUserRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
+
+    public List<AppUserResponse> getAllUsers() {
+        return appUserRepository.findAll().stream()
+            .map(u -> new AppUserResponse(u.getId(), u.getName(), u.getEmail(), u.getGroup(), u.getIsAdmin()))
+            .collect(Collectors.toList());
+    }
 
     public LoginResponse register(RegisterRequest req) {
         if (appUserRepository.findByEmail(req.email()).isPresent()) {
