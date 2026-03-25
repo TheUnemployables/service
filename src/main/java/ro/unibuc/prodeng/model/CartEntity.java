@@ -10,13 +10,13 @@ import java.util.List;
 
 @Data
 @Document(collection = "cart")
-public class CartEntity {
+public class CartEntity{
     @Id
     private String id;
     private String userID;
-    private List<CartItem> items = new ArrayList<>();
+    private List<CartItem> items;
     private CartStatus status;
-    private Instant createdAt = Instant.now();
+    private LocalDateTime createdAt;
 
     public enum CartStatus { OPEN, SUBMITTED }
 
