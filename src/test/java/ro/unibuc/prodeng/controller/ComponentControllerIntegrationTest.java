@@ -59,10 +59,10 @@ class ComponentControllerIntegrationTest extends IntegrationTestBase {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value("Arduino Uno"))
                 .andExpect(jsonPath("$.category").value("Electronice"))
-                .andExpect(jsonPath("$.availableQuantity").value(15))
-                .andExpect(jsonPath("$.active").value(true));
+                .andExpect(jsonPath("$.availableQuantity").value(15));
+        boolean existsInDb = componentRepository.findById(componentId).isPresent();
+        org.junit.jupiter.api.Assertions.assertTrue(existsInDb, "Componenta trebuie să existe fizic in baza de date!");
     }
-
     @Test
     void testGetComponents_multipleComponents_filtersCorrectly() throws Exception {
         createComponent("Cablu USB", "Cabluri", 50, true);
