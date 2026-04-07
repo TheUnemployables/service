@@ -38,6 +38,6 @@ public class ComponentEntity {
         if (availableQuantity != null && this.quantity != null && availableQuantity > this.quantity) {
             throw new IllegalArgumentException("Available quantity cannot exceed total quantity.");
         }
-        this.availableQuantity = availableQuantity;
+        this.availableQuantity = availableQuantity;//Model
     }
 }
