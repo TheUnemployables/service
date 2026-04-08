@@ -17,14 +17,15 @@ pipeline {
         stage('Deploy Infrastructure') {
             steps {
                 script {
-                    // Oferim permisiuni de execuție scripturilor (just in case)
                     sh 'chmod +x start_mongo_only.sh stop_mongo_only.sh'
                     
-                    // Pornim doar MongoDB folosind scriptul existent în proiect
+                    // 1. Oprim orice instanță veche care ar putea bloca porturile
+                    sh './stop_mongo_only.sh || true'
+                    
+                    // 2. Pornim MongoDB
                     sh './start_mongo_only.sh'
                     
-                    // Așteptăm să se inițializeze
-                    sh 'sleep 15'
+                    sh 'sleep 20'
                 }
             }
         }
