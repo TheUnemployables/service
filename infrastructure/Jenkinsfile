@@ -8,23 +8,20 @@ pipeline {
     stages {
         stage('Compile') {
             steps {
-                // Doar compilăm codul, fără să rulăm niciun test încă
                 sh './gradlew clean compileJava'
             }
         }
 
         stage('Deploy Infrastructure') {
             steps {
-                // Presupunând că docker-compose.yml este în folderul infrastructure
-                sh 'docker compose -f infrastructure/docker-compose.yml up -d --build'
+                // Comanda simplă, deoarece fișierul e în root
+                sh 'docker compose up -d --build'
                 sh 'sleep 20' 
             }
         }
 
         stage('Verify & All Tests') {
             steps {
-                // Acum că avem baza de date pornită, rulăm TOATE testele
-                // Jenkins nu se va mai plânge de MongoTimeout
                 sh './gradlew test' 
             }
         }
@@ -32,6 +29,7 @@ pipeline {
 
     post {
         always {
+            // Curățăm containerele la final
             sh 'docker compose down'
         }
     }
