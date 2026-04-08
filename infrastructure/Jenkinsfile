@@ -2,14 +2,12 @@ pipeline {
     agent any
     
     environment {
-        // Asigură-te că acest ID de credentiale există în Jenkins (Manage Jenkins -> Credentials)
         DOCKER_PASSWORD = credentials("docker_password")
     }
 
     stages {
         stage('Compile') {
             steps {
-                // Curățăm și compilăm pentru a ne asigura că Java e ok
                 sh './gradlew clean compileJava'
             }
         }
@@ -17,15 +15,8 @@ pipeline {
         stage('Deploy Infrastructure') {
             steps {
                 script {
-                    sh 'chmod +x stop_mongo_only.sh'
-                    
-                    // 1. Curățăm orice resturi
-                    sh './stop_mongo_only.sh || true'
-                    
-                    // 2. Pornim STRICT containerul de mongo (fără admin-ui)
-                    // Asta nu va mai încerca să lege portul 8090
+                    // Acum că ai șters tot manual, comanda asta nu va mai da eroare de port
                     sh 'docker compose up -d mongo'
-                    
                     sh 'sleep 15'
                 }
             }
@@ -33,7 +24,6 @@ pipeline {
 
         stage('Verify & All Tests') {
             steps {
-                // Rulăm testele acum că avem infrastructura pornită
                 sh './gradlew test' 
             }
         }
