@@ -17,15 +17,16 @@ pipeline {
         stage('Deploy Infrastructure') {
             steps {
                 script {
-                    sh 'chmod +x start_mongo_only.sh stop_mongo_only.sh'
+                    sh 'chmod +x stop_mongo_only.sh'
                     
-                    // 1. Oprim orice instanță veche care ar putea bloca porturile
+                    // 1. Curățăm orice resturi
                     sh './stop_mongo_only.sh || true'
                     
-                    // 2. Pornim MongoDB
-                    sh './start_mongo_only.sh'
+                    // 2. Pornim STRICT containerul de mongo (fără admin-ui)
+                    // Asta nu va mai încerca să lege portul 8090
+                    sh 'docker compose up -d mongo'
                     
-                    sh 'sleep 20'
+                    sh 'sleep 15'
                 }
             }
         }
@@ -40,8 +41,7 @@ pipeline {
 
     post {
         always {
-            // Folosim scriptul de oprire corespunzător
-            sh './stop_mongo_only.sh'
+            sh 'docker compose down'
         }
     }
 }
