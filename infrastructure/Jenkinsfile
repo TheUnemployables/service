@@ -15,8 +15,8 @@ pipeline {
 
         stage('Deploy Infrastructure') {
             steps {
-                // Pornim baza de date și aplicația
-                sh 'docker compose up -d --build'
+                // Presupunând că docker-compose.yml este în folderul infrastructure
+                sh 'docker compose -f infrastructure/docker-compose.yml up -d --build'
                 sh 'sleep 20' 
             }
         }
