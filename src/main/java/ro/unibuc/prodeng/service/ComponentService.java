@@ -1,5 +1,5 @@
 package ro.unibuc.prodeng.service;
-
+import java.time.Instant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import ro.unibuc.prodeng.model.ComponentEntity;
 import ro.unibuc.prodeng.repository.ComponentRepository;
+import ro.unibuc.prodeng.request.ComponentRequest;
 import ro.unibuc.prodeng.response.ComponentResponse;
 
 import java.util.List;
@@ -23,7 +24,30 @@ public class ComponentService {
     private ComponentRepository componentRepository;
 
     @Autowired
-    private MongoTemplate mongoTemplate; 
+    private MongoTemplate mongoTemplate;
+
+    /**
+     * Metodă adăugată pentru crearea unei componente (folosită de testele E2E)
+     */
+    public ComponentResponse createComponent(ComponentRequest request) {
+        ComponentEntity entity = new ComponentEntity();
+        
+        // Mapăm datele din Request în Entitate
+        entity.setId(request.id());
+        entity.setName(request.name());
+        entity.setDescription(request.description());
+        entity.setCategory(request.category());
+        entity.setQuantity(request.stock());
+        entity.setAvailableQuantity(request.stock()); // La creare, cantitatea disponibilă e egală cu stocul
+        entity.setIsConsumable(request.isConsumable());
+        entity.setCreatedAt(Instant.now());
+
+        // Salvăm entitatea în MongoDB
+        ComponentEntity saved = componentRepository.save(entity);
+
+        // Convertim entitatea salvată în obiect de răspuns
+        return toResponse(saved);
+    }
 
     public Page<ComponentResponse> getComponents(
             String category, 
@@ -67,7 +91,6 @@ public class ComponentService {
         return new PageImpl<>(responses, pageable, total);
     }
 
- 
     private ComponentResponse toResponse(ComponentEntity entity) {
         return new ComponentResponse(
                 entity.getId(),

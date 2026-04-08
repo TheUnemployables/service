@@ -1,7 +1,8 @@
 services:
   prod-eng:
-    image: prod-eng-img
-    build: .
+    # folosim imaginea prod-eng-img construita in lab 3.1, daca nu exista folosim imaginea prod-eng-img de pe DockerHub
+    image: ${PROD_ENG_IMAGE:-prod-eng-img}
+    # eliminam build conform lab 3.1
     ports:
       - 8080:8080
       # Port for debug
@@ -12,12 +13,16 @@ services:
     restart: always
     profiles:
       - "prod-eng-service"
+
   jenkins:
     image: jenkins/jenkins
     ports:
       - 8082:8080
       - 50000:50000
     restart: on-failure
+    # Task 2.2: Adaugam host-gateway pentru comunicarea Jenkins - App
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
       - /workspaces/jenkins_config:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
@@ -27,6 +32,7 @@ services:
     profiles:
       - "prod-eng-service"
     user: 0:0
+
   mongo:
     image: mongo:6.0.20
     restart: always
@@ -37,6 +43,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: example
     profiles:
       - "mongo"
+
   mongo-admin-ui:
     image: mongo-express
     restart: always
@@ -50,8 +57,9 @@ services:
       ME_CONFIG_BASICAUTH_PASSWORD: adobe
     profiles:
       - "mongo"
+
 # MONITORING SERVICES
-  cadvisor: # container metric prometheus exporter
+  cadvisor: 
     image: gcr.io/cadvisor/cadvisor:v0.51.0
     container_name: cadvisor
     ports:
@@ -65,6 +73,7 @@ services:
       - /var/lib/dbus/machine-id:/var/lib/dbus/machine-id:ro
     profiles:
       - "monitoring"
+
   mongodb-exporter:
     build: ./infrastructure/mongodb_exporter/
     command: ./mongodb_exporter-linux-amd64 -logtostderr -mongodb.uri mongodb://root:example@mongo:27017 -groups.enabled 'asserts,durability,background_flusshing,connections,extra_info,global_lock,index_counters,network,op_counters,op_counters_repl,memory,locks,metrics'
@@ -73,6 +82,7 @@ services:
       - 9001:9001
     profiles:
       - "monitoring"
+
   loki:
     image: grafana/loki:3.3.2
     ports:
@@ -82,7 +92,8 @@ services:
     command: -config.file=/etc/loki/config.yaml
     profiles:
       - "monitoring"
-  prometheus: # metrics aggregation and alert definition server (prometheus server)
+
+  prometheus: 
     image: prom/prometheus:v3.1.0
     volumes:
       - ./infrastructure/prometheus/:/etc/prometheus/
@@ -97,7 +108,8 @@ services:
         loki-url: "http://loki:3100/loki/api/v1/push"
     profiles:
       - "monitoring"
-  alertmanager: # alert manager (prometheus)
+
+  alertmanager: 
     image: prom/alertmanager:v0.28.0
     volumes:
       - ./infrastructure/alertmanager/:/config/
@@ -110,7 +122,8 @@ services:
         loki-url: "http://loki:3100/loki/api/v1/push"
     profiles:
       - "monitoring"
-  grafana: # dashboard visualisation tool (metrics & logs)
+
+  grafana: 
     image: grafana/grafana:11.4.0
     volumes:
       - ./infrastructure/grafana/provisioning:/etc/grafana/provisioning
@@ -123,7 +136,8 @@ services:
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
     profiles:
       - "monitoring"
-  wrk-injector-prod-eng-functional: # traffic injector (low)
+
+  wrk-injector-prod-eng-functional: 
     image: mtchavez/docker-wrk
     profiles:
       - "perf"
@@ -133,7 +147,7 @@ services:
       options:
         loki-url: "http://loki:3100/loki/api/v1/push"
 
-  wrk-injector-info-perf: # traffic injector (high)
+  wrk-injector-info-perf: 
     image: mtchavez/docker-wrk
     profiles:
       - "perf"

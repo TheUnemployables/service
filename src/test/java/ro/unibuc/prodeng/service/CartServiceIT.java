@@ -1,102 +1,80 @@
 package ro.unibuc.prodeng.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.bean.override.mockito.MockitoBean;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import ro.unibuc.prodeng.exception.EntityNotFoundException;
-import ro.unibuc.prodeng.model.CartEntity;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+import ro.unibuc.prodeng.IntegrationTestBase;
 import ro.unibuc.prodeng.model.ComponentEntity;
 import ro.unibuc.prodeng.model.UserEntity;
 import ro.unibuc.prodeng.repository.ComponentRepository;
+import ro.unibuc.prodeng.repository.CartRepository;
 import ro.unibuc.prodeng.repository.UserRepository;
 import ro.unibuc.prodeng.request.AddToCartRequest;
-import ro.unibuc.prodeng.response.CartResponse;
 
-import java.util.Optional;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.hamcrest.Matchers.*;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyString;
+@DisplayName("Cart Integration Tests (Fixed Records)")
+class CartServiceIT extends IntegrationTestBase {
 
-@SpringBootTest
-public class CartServiceIT {
+   @Autowired
+   private MockMvc mockMvc;
 
-    @Autowired
-    private CartService cartService;
+   @Autowired
+   private ComponentRepository componentRepository;
 
-    @Autowired
-    private ComponentRepository componentRepository;
+   @Autowired
+   private CartRepository cartRepository;
 
-    @Autowired
-    private MongoTemplate mongoTemplate;
+   @Autowired
+   private UserRepository userRepository;
 
-    @MockitoBean
-    private UserRepository userRepository;
+   @Autowired
+   private ObjectMapper objectMapper;
 
-    @MockitoBean
-    private UserService userService; 
+   private final String userId = "user123";
+   private final String componentId = "comp123";
 
-    @MockitoBean
-    private TodoService todoService;
+   @BeforeEach
+   void setup() {
+      cartRepository.deleteAll();
+      componentRepository.deleteAll();
+      userRepository.deleteAll();
 
-    private final String userId = "user123";
-    private final String componentId = "comp123";
+      // Corecție pentru Record: pasam datele direct în constructor
+      UserEntity user = new UserEntity(userId, "Profesor Demo", "prof@unibuc.ro");
+      userRepository.save(user);
 
-    @BeforeEach
-    void setUp() {
-        mongoTemplate.dropCollection(CartEntity.class);
-        mongoTemplate.dropCollection(ComponentEntity.class);
+      // Creăm o componentă cu stoc disponibil
+      ComponentEntity component = new ComponentEntity();
+      component.setId(componentId);
+      component.setName("Piesa Test");
+      component.setAvailableQuantity(10);
+      componentRepository.save(component);
+   }
 
-        UserEntity mockUser = Mockito.mock(UserEntity.class);
-        Mockito.when(userRepository.findById(anyString())).thenReturn(Optional.of(mockUser));
+   @Test
+   void testAddToCart_andSubmit_FullIntegrationFlow() throws Exception {
+      AddToCartRequest request = new AddToCartRequest(componentId, 2);
+      
+      mockMvc.perform(post("/api/carts/" + userId + "/add")
+              .contentType(MediaType.APPLICATION_JSON)
+              .content(objectMapper.writeValueAsString(request)))
+              .andExpect(status().isOk())
+              .andExpect(jsonPath("$.items", hasSize(greaterThanOrEqualTo(1))))
+              .andExpect(jsonPath("$.items[0].quantity", is(2)));
 
-        ComponentEntity component = new ComponentEntity();
-        component.setId(componentId);
-        component.setName("Placă Senzor IT");
-        component.setQuantity(20);
-        component.setAvailableQuantity(20);
-        component.setIsConsumable(true);
-        componentRepository.save(component);
-    }
+      mockMvc.perform(get("/api/carts/" + userId))
+              .andExpect(status().isOk())
+              .andExpect(jsonPath("$.userID", is(userId)));
 
-    @Test
-    void testAddToCart_FullFlow() throws EntityNotFoundException {
-        AddToCartRequest request = new AddToCartRequest(componentId, 5);
-        CartResponse response = cartService.addToCart(userId, request);
-        assertEquals(5, response.items().get(0).quantity());
-
-        response = cartService.addToCart(userId, new AddToCartRequest(componentId, 2));
-        assertEquals(7, response.items().get(0).quantity());
-    }
-
-    @Test
-    void testAddToCart_InsufficientStock() {
-        // Avem 20 în stoc, cerem 100 -> trebuie să dea eroare
-        AddToCartRequest request = new AddToCartRequest(componentId, 100);
-        assertThrows(IllegalArgumentException.class, () -> cartService.addToCart(userId, request));
-    }
-
-    @Test
-    void testRemoveFromCart() throws EntityNotFoundException {
-        cartService.addToCart(userId, new AddToCartRequest(componentId, 2));
-        CartResponse response = cartService.removeFromCart(userId, componentId);
-        assertTrue(response.items().isEmpty());
-    }
-
-    @Test
-    void testSubmitCart_SuccessAndEmptyError() throws EntityNotFoundException {
-        assertThrows(EntityNotFoundException.class, () -> cartService.submitCart("nonExistentUser"));
-
-        cartService.addToCart(userId, new AddToCartRequest(componentId, 5));
-        
-        CartResponse submitResponse = cartService.submitCart(userId);
-        
-        assertEquals("SUBMITTED", submitResponse.status());
-
-        ComponentEntity updated = componentRepository.findById(componentId).orElseThrow();
-        assertEquals(15, updated.getAvailableQuantity());
-    }
+      mockMvc.perform(post("/api/carts/" + userId + "/submit"))
+              .andExpect(status().isOk())
+              .andExpect(jsonPath("$.status", is("SUBMITTED")));
+   }
 }

@@ -2,9 +2,11 @@ package ro.unibuc.prodeng.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import ro.unibuc.prodeng.request.ComponentRequest; // O să creăm acest fișier imediat
 import ro.unibuc.prodeng.response.ComponentResponse; 
 import ro.unibuc.prodeng.service.ComponentService;
 
@@ -28,5 +30,12 @@ public class ComponentController {
                 category, isConsumable, available, search, page, size
         );
         return ResponseEntity.ok(components);
+    }
+
+    // am adaugat metoda pentru crearea componentei: Metoda pentru crearea componentei
+    @PostMapping
+    public ResponseEntity<ComponentResponse> createComponent(@RequestBody ComponentRequest request) {
+        ComponentResponse created = componentService.createComponent(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 }
