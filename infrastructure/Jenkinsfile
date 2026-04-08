@@ -1,14 +1,39 @@
 pipeline {
     agent any
+    
     environment {
         DOCKER_PASSWORD = credentials("docker_password")
     }
 
     stages {
-        stage('Build & Test') {
+        stage('Compile & Unit Tests') {
             steps {
-                sh './gradlew clean build'
+                // Rulăm doar compilarea și testele unitare (fără cele de integrare/E2E)
+                sh './gradlew clean compileJava test --exclude-task testIT'
             }
+        }
+
+        stage('Deploy Infrastructure') {
+            steps {
+                // Pornim baza de date și aplicația în containere
+                sh 'docker compose up -d --build'
+                // Așteptăm puțin să se inițializeze baza de date
+                sh 'sleep 15'
+            }
+        }
+
+        stage('Verify (E2E Tests)') {
+            steps {
+                // Acum rulăm testele E2E (Cucumber) pe infrastructura pornita
+                sh './gradlew test' 
+            }
+        }
+    }
+
+    post {
+        always {
+            // Oprim totul la final ca să nu lasam procese active
+            sh 'docker compose down'
         }
     }
 }

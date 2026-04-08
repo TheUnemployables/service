@@ -1,9 +1,11 @@
 package ro.unibuc.prodeng.service;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ro.unibuc.prodeng.exception.EntityNotFoundException;
 import ro.unibuc.prodeng.model.CartEntity;
@@ -24,11 +26,22 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class CartServiceTest {
 
-    @Mock private CartRepository cartRepository;
-    @Mock private ComponentRepository componentRepository;
-    @Mock private UserRepository userRepository;
+    @Mock 
+    private CartRepository cartRepository;
+    
+    @Mock 
+    private ComponentRepository componentRepository;
+    
+    @Mock 
+    private UserRepository userRepository;
 
-    @InjectMocks private CartService cartService;
+    @InjectMocks 
+    private CartService cartService;
+
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
 
     @Test
     void getActiveCart_ReturnsExistingCart_WhenUserExists() throws EntityNotFoundException {
