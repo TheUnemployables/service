@@ -1,6 +1,5 @@
 package ro.unibuc.prodeng.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.unibuc.prodeng.exception.EntityNotFoundException;
 import ro.unibuc.prodeng.model.CartEntity;
@@ -18,9 +17,19 @@ import java.util.Optional;
 @Service
 public class CartService {
 
-    @Autowired private CartRepository cartRepository;
-    @Autowired private ComponentRepository componentRepository;
-    @Autowired private UserRepository userRepository;
+    private final CartRepository cartRepository;
+    private final ComponentRepository componentRepository;
+    private final UserRepository userRepository;
+
+    // Constructor Injection - Spring va știi să injecteze automat, 
+    // iar testul nostru manual va funcționa acum perfect!
+    public CartService(CartRepository cartRepository, 
+                       ComponentRepository componentRepository, 
+                       UserRepository userRepository) {
+        this.cartRepository = cartRepository;
+        this.componentRepository = componentRepository;
+        this.userRepository = userRepository;
+    }
 
     public CartResponse getActiveCart(String userId) throws EntityNotFoundException {
         userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException("User not found"));
