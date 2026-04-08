@@ -17,16 +17,14 @@ pipeline {
         stage('Deploy Infrastructure') {
             steps {
                 script {
-                    // Debug: Vedem unde suntem și ce fișiere avem
-                    sh 'pwd'
-                    sh 'ls -la'
+                    // Oferim permisiuni de execuție scripturilor (just in case)
+                    sh 'chmod +x start_mongo_only.sh stop_mongo_only.sh'
                     
-                    // Încercăm să pornim serviciile
-                    // Am adăugat '-f docker-compose.yml' pentru a fi ultra-expliciți
-                    sh 'docker compose -f docker-compose.yml up -d --build'
+                    // Pornim doar MongoDB folosind scriptul existent în proiect
+                    sh './start_mongo_only.sh'
                     
-                    // Așteptăm să se ridice baza de date
-                    sh 'sleep 20'
+                    // Așteptăm să se inițializeze
+                    sh 'sleep 15'
                 }
             }
         }
@@ -41,9 +39,8 @@ pipeline {
 
     post {
         always {
-            // Curățăm containerele indiferent dacă testele trec sau pică
-            // Folosim aceeași cale explicită ca la pornire
-            sh 'docker compose -f docker-compose.yml down'
+            // Folosim scriptul de oprire corespunzător
+            sh './stop_mongo_only.sh'
         }
     }
 }
