@@ -6,25 +6,25 @@ pipeline {
     }
 
     stages {
-        stage('Compile & Unit Tests') {
+        stage('Compile') {
             steps {
-                // Rulăm doar compilarea și testele unitare (fără cele de integrare/E2E)
-                sh './gradlew clean compileJava test --exclude-task testIT'
+                // Doar compilăm codul, fără să rulăm niciun test încă
+                sh './gradlew clean compileJava'
             }
         }
 
         stage('Deploy Infrastructure') {
             steps {
-                // Pornim baza de date și aplicația în containere
+                // Pornim baza de date și aplicația
                 sh 'docker compose up -d --build'
-                // Așteptăm puțin să se inițializeze baza de date
-                sh 'sleep 15'
+                sh 'sleep 20' 
             }
         }
 
-        stage('Verify (E2E Tests)') {
+        stage('Verify & All Tests') {
             steps {
-                // Acum rulăm testele E2E (Cucumber) pe infrastructura pornita
+                // Acum că avem baza de date pornită, rulăm TOATE testele
+                // Jenkins nu se va mai plânge de MongoTimeout
                 sh './gradlew test' 
             }
         }
@@ -32,7 +32,6 @@ pipeline {
 
     post {
         always {
-            // Oprim totul la final ca să nu lasam procese active
             sh 'docker compose down'
         }
     }
