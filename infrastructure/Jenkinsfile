@@ -2,26 +2,38 @@ pipeline {
     agent any
     
     environment {
+        // Asigură-te că acest ID de credentiale există în Jenkins (Manage Jenkins -> Credentials)
         DOCKER_PASSWORD = credentials("docker_password")
     }
 
     stages {
         stage('Compile') {
             steps {
+                // Curățăm și compilăm pentru a ne asigura că Java e ok
                 sh './gradlew clean compileJava'
             }
         }
 
         stage('Deploy Infrastructure') {
             steps {
-                // Comanda simplă, deoarece fișierul e în root
-                sh 'docker compose up -d --build'
-                sh 'sleep 20' 
+                script {
+                    // Debug: Vedem unde suntem și ce fișiere avem
+                    sh 'pwd'
+                    sh 'ls -la'
+                    
+                    // Încercăm să pornim serviciile
+                    // Am adăugat '-f docker-compose.yml' pentru a fi ultra-expliciți
+                    sh 'docker compose -f docker-compose.yml up -d --build'
+                    
+                    // Așteptăm să se ridice baza de date
+                    sh 'sleep 20'
+                }
             }
         }
 
         stage('Verify & All Tests') {
             steps {
+                // Rulăm testele acum că avem infrastructura pornită
                 sh './gradlew test' 
             }
         }
@@ -29,8 +41,9 @@ pipeline {
 
     post {
         always {
-            // Curățăm containerele la final
-            sh 'docker compose down'
+            // Curățăm containerele indiferent dacă testele trec sau pică
+            // Folosim aceeași cale explicită ca la pornire
+            sh 'docker compose -f docker-compose.yml down'
         }
     }
 }
