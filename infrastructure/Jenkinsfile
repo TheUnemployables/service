@@ -15,7 +15,9 @@ pipeline {
         stage('Deploy Infrastructure') {
             steps {
                 script {
-                    // Acum că ai șters tot manual, comanda asta nu va mai da eroare de port
+                    // Forțăm oprirea oricărui container mongo care a rămas "agățat"
+                    sh 'docker compose down mongo || true'
+                    // Pornim mongo proaspăt
                     sh 'docker compose up -d mongo'
                     sh 'sleep 15'
                 }
