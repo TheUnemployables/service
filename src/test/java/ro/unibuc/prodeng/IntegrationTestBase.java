@@ -22,7 +22,7 @@ public abstract class IntegrationTestBase {
 
    static {
       // Dacă nu avem deja o conexiune setată (ex: în Jenkins), pornim containerul local
-      if (System.getenv("MONGODB_CONECTION_URL") == null) {
+      if (System.getenv("MONGODB_CONNECTION_URL") == null) {
           mongoDBContainer.start();
       }
    }

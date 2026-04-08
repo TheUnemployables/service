@@ -11,6 +11,7 @@ import ro.unibuc.prodeng.request.AddToCartRequest;
 import ro.unibuc.prodeng.response.CartItemResponse;
 import ro.unibuc.prodeng.response.CartResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -100,11 +101,12 @@ public class CartService {
         CartEntity newCart = new CartEntity();
         newCart.setUserID(userId);
         newCart.setStatus(CartEntity.CartStatus.OPEN);
+        newCart.setItems(new ArrayList<>());
         return cartRepository.save(newCart);
     }
 
     private CartResponse toResponse(CartEntity entity) {
-        List<CartItemResponse> items = entity.getItems().stream().map(item -> {
+        List<CartItemResponse> items = (entity.getItems() != null ? entity.getItems() : new ArrayList<CartEntity.CartItem>()).stream().map(item -> {
             String compName = componentRepository.findById(item.getComponentId())
                     .map(ComponentEntity::getName).orElse("Unknown");
             return new CartItemResponse(item.getComponentId(), compName, item.getQuantity());

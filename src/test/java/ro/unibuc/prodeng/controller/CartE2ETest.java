@@ -26,7 +26,10 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
 
+import org.junit.jupiter.api.Tag;
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Tag("E2E")
 public class CartE2ETest {
 
     @Autowired

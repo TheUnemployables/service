@@ -16,6 +16,7 @@ import ro.unibuc.prodeng.repository.UserRepository;
 import ro.unibuc.prodeng.request.AddToCartRequest;
 import ro.unibuc.prodeng.response.CartResponse;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -49,6 +50,7 @@ class CartServiceTest {
         CartEntity mockCart = new CartEntity();
         mockCart.setUserID(userId);
         mockCart.setStatus(CartEntity.CartStatus.OPEN);
+        mockCart.setItems(new ArrayList<>());
 
         when(userRepository.findById(userId)).thenReturn(Optional.of(mockUser));
         when(cartRepository.findByUserIDAndStatus(userId, CartEntity.CartStatus.OPEN)).thenReturn(Optional.of(mockCart));
@@ -73,6 +75,7 @@ class CartServiceTest {
         CartEntity mockCart = new CartEntity();
         mockCart.setUserID(userId);
         mockCart.setStatus(CartEntity.CartStatus.OPEN);
+        mockCart.setItems(new ArrayList<>());
 
         when(componentRepository.findById(compId)).thenReturn(Optional.of(mockComponent));
         when(cartRepository.findByUserIDAndStatus(userId, CartEntity.CartStatus.OPEN)).thenReturn(Optional.of(mockCart));
@@ -106,6 +109,7 @@ class CartServiceTest {
         CartEntity mockCart = new CartEntity();
         mockCart.setUserID(userId);
         mockCart.setStatus(CartEntity.CartStatus.OPEN);
+        mockCart.setItems(new ArrayList<>());
         mockCart.getItems().add(new CartEntity.CartItem("comp1", 2));
 
         ComponentEntity mockComponent = new ComponentEntity();
@@ -132,6 +136,7 @@ class CartServiceTest {
         CartEntity mockCart = new CartEntity();
         mockCart.setUserID(userId);
         mockCart.setStatus(CartEntity.CartStatus.OPEN);
+        mockCart.setItems(new ArrayList<>());
         mockCart.getItems().add(new CartEntity.CartItem(componentId, 2));
 
         when(cartRepository.findByUserIDAndStatus(userId, CartEntity.CartStatus.OPEN)).thenReturn(Optional.of(mockCart));
@@ -150,6 +155,7 @@ class CartServiceTest {
         CartEntity mockCart = new CartEntity();
         mockCart.setUserID(userId);
         mockCart.setStatus(CartEntity.CartStatus.OPEN);
+        mockCart.setItems(new ArrayList<>());
 
         when(cartRepository.findByUserIDAndStatus(userId, CartEntity.CartStatus.OPEN)).thenReturn(Optional.of(mockCart));
 
@@ -164,6 +170,7 @@ class CartServiceTest {
         createdCart.setId("newCartId");
         createdCart.setUserID(userId);
         createdCart.setStatus(CartEntity.CartStatus.OPEN);
+        createdCart.setItems(new ArrayList<>());
 
         when(userRepository.findById(userId)).thenReturn(Optional.of(mockUser));
         when(cartRepository.findByUserIDAndStatus(userId, CartEntity.CartStatus.OPEN)).thenReturn(Optional.empty());
@@ -188,6 +195,7 @@ class CartServiceTest {
         CartEntity mockCart = new CartEntity();
         mockCart.setUserID(userId);
         mockCart.setStatus(CartEntity.CartStatus.OPEN);
+        mockCart.setItems(new ArrayList<>());
         mockCart.getItems().add(new CartEntity.CartItem(compId, 1));
 
         when(componentRepository.findById(compId)).thenReturn(Optional.of(mockComponent));
