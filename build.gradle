@@ -12,6 +12,15 @@ java {
 	sourceCompatibility = JavaVersion.VERSION_21
 }
 
+tasks.withType(JavaCompile).configureEach {
+	options.fork = true
+	options.forkOptions.executable = '/usr/lib/jvm/java-21-openjdk/bin/javac'
+}
+
+tasks.withType(Test).configureEach {
+	executable = '/usr/lib/jvm/java-21-openjdk/bin/java'
+}
+
 repositories {
 	mavenCentral()
 }

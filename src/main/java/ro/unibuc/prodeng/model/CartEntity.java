@@ -16,7 +16,7 @@ public class CartEntity{
     private String userID;
     private List<CartItem> items;
     private CartStatus status;
-    private LocalDateTime createdAt;
+    private Instant createdAt;
 
     public enum CartStatus { OPEN, SUBMITTED }
 
