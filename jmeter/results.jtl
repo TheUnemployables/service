@@ -1,0 +1,411 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1776773348386,63,Register User,400,,Login Flow Thread Group 1-1,text,false,,363,307,1,1,http://localhost:8080/api/auth/register,57,0,33
+1776773348452,113,Login Request,200,,Login Flow Thread Group 1-1,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,113,0,1
+1776773348568,7,Get Me Request,401,,Login Flow Thread Group 1-1,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,6,0,0
+1776773348575,126,Login Request,200,,Login Flow Thread Group 1-1,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,126,0,0
+1776773348702,5,Get Me Request,401,,Login Flow Thread Group 1-1,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776773348708,132,Login Request,200,,Login Flow Thread Group 1-1,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,131,0,0
+1776773348840,7,Get Me Request,401,,Login Flow Thread Group 1-1,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,7,0,0
+1776773348848,127,Login Request,200,,Login Flow Thread Group 1-1,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,127,0,0
+1776773348976,6,Get Me Request,401,,Login Flow Thread Group 1-1,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,6,0,0
+1776773348983,115,Login Request,200,,Login Flow Thread Group 1-1,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,115,0,0
+1776773349099,7,Get Me Request,401,,Login Flow Thread Group 1-1,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,7,0,0
+1776773349199,11,Register User,400,,Login Flow Thread Group 1-2,text,false,,363,307,1,1,http://localhost:8080/api/auth/register,10,0,1
+1776773349211,135,Login Request,200,,Login Flow Thread Group 1-2,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,135,0,1
+1776773349347,9,Get Me Request,401,,Login Flow Thread Group 1-2,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,8,0,0
+1776773349357,137,Login Request,200,,Login Flow Thread Group 1-2,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,136,0,0
+1776773349494,7,Get Me Request,401,,Login Flow Thread Group 1-2,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,7,0,0
+1776773349502,112,Login Request,200,,Login Flow Thread Group 1-2,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,112,0,0
+1776773349615,6,Get Me Request,401,,Login Flow Thread Group 1-2,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,6,0,0
+1776773349621,116,Login Request,200,,Login Flow Thread Group 1-2,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,116,0,0
+1776773349738,6,Get Me Request,401,,Login Flow Thread Group 1-2,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,6,0,0
+1776773349745,111,Login Request,200,,Login Flow Thread Group 1-2,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,111,0,0
+1776773349857,5,Get Me Request,401,,Login Flow Thread Group 1-2,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776773350199,11,Register User,400,,Login Flow Thread Group 1-3,text,false,,363,307,1,1,http://localhost:8080/api/auth/register,10,0,1
+1776773350211,123,Login Request,200,,Login Flow Thread Group 1-3,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,123,0,1
+1776773350335,6,Get Me Request,401,,Login Flow Thread Group 1-3,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,6,0,0
+1776773350341,113,Login Request,200,,Login Flow Thread Group 1-3,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,113,0,0
+1776773350455,5,Get Me Request,401,,Login Flow Thread Group 1-3,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776773350461,124,Login Request,200,,Login Flow Thread Group 1-3,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,124,0,0
+1776773350586,6,Get Me Request,401,,Login Flow Thread Group 1-3,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,6,0,0
+1776773350592,112,Login Request,200,,Login Flow Thread Group 1-3,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,112,0,0
+1776773350705,6,Get Me Request,401,,Login Flow Thread Group 1-3,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,6,0,0
+1776773350712,110,Login Request,200,,Login Flow Thread Group 1-3,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,110,0,0
+1776773350823,5,Get Me Request,401,,Login Flow Thread Group 1-3,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776773351199,11,Register User,400,,Login Flow Thread Group 1-4,text,false,,363,307,1,1,http://localhost:8080/api/auth/register,11,0,1
+1776773351211,123,Login Request,200,,Login Flow Thread Group 1-4,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,123,0,1
+1776773351335,7,Get Me Request,401,,Login Flow Thread Group 1-4,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,7,0,0
+1776773351343,115,Login Request,200,,Login Flow Thread Group 1-4,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,115,0,0
+1776773351459,5,Get Me Request,401,,Login Flow Thread Group 1-4,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776773351465,114,Login Request,200,,Login Flow Thread Group 1-4,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,114,0,0
+1776773351580,5,Get Me Request,401,,Login Flow Thread Group 1-4,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776773351586,118,Login Request,200,,Login Flow Thread Group 1-4,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,118,0,0
+1776773351705,5,Get Me Request,401,,Login Flow Thread Group 1-4,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776773351710,109,Login Request,200,,Login Flow Thread Group 1-4,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,109,0,0
+1776773351820,5,Get Me Request,401,,Login Flow Thread Group 1-4,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776773352196,11,Register User,400,,Login Flow Thread Group 1-5,text,false,,363,307,1,1,http://localhost:8080/api/auth/register,11,0,1
+1776773352208,124,Login Request,200,,Login Flow Thread Group 1-5,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,123,0,1
+1776773352332,5,Get Me Request,401,,Login Flow Thread Group 1-5,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776773352338,111,Login Request,200,,Login Flow Thread Group 1-5,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,111,0,0
+1776773352450,6,Get Me Request,401,,Login Flow Thread Group 1-5,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,6,0,0
+1776773352457,118,Login Request,200,,Login Flow Thread Group 1-5,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,118,0,0
+1776773352576,5,Get Me Request,401,,Login Flow Thread Group 1-5,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776773352582,117,Login Request,200,,Login Flow Thread Group 1-5,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,117,0,0
+1776773352700,5,Get Me Request,401,,Login Flow Thread Group 1-5,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776773352706,115,Login Request,200,,Login Flow Thread Group 1-5,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,115,0,0
+1776773352822,5,Get Me Request,401,,Login Flow Thread Group 1-5,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776773353194,10,Register User,400,,Login Flow Thread Group 1-6,text,false,,363,307,1,1,http://localhost:8080/api/auth/register,10,0,1
+1776773353205,127,Login Request,200,,Login Flow Thread Group 1-6,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,127,0,1
+1776773353333,5,Get Me Request,401,,Login Flow Thread Group 1-6,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776773353339,115,Login Request,200,,Login Flow Thread Group 1-6,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,115,0,0
+1776773353455,5,Get Me Request,401,,Login Flow Thread Group 1-6,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776773353461,120,Login Request,200,,Login Flow Thread Group 1-6,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,120,0,0
+1776773353582,6,Get Me Request,401,,Login Flow Thread Group 1-6,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776773353588,125,Login Request,200,,Login Flow Thread Group 1-6,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,125,0,0
+1776773353714,8,Get Me Request,401,,Login Flow Thread Group 1-6,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,8,0,0
+1776773353723,111,Login Request,200,,Login Flow Thread Group 1-6,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,111,0,0
+1776773353835,5,Get Me Request,401,,Login Flow Thread Group 1-6,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776773354195,10,Register User,400,,Login Flow Thread Group 1-7,text,false,,363,307,1,1,http://localhost:8080/api/auth/register,10,0,1
+1776773354206,126,Login Request,200,,Login Flow Thread Group 1-7,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,126,0,1
+1776773354333,5,Get Me Request,401,,Login Flow Thread Group 1-7,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776773354338,113,Login Request,200,,Login Flow Thread Group 1-7,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,113,0,0
+1776773354452,5,Get Me Request,401,,Login Flow Thread Group 1-7,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776773354457,113,Login Request,200,,Login Flow Thread Group 1-7,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,112,0,0
+1776773354570,6,Get Me Request,401,,Login Flow Thread Group 1-7,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,6,0,0
+1776773354577,110,Login Request,200,,Login Flow Thread Group 1-7,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,110,0,0
+1776773354688,5,Get Me Request,401,,Login Flow Thread Group 1-7,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776773354694,109,Login Request,200,,Login Flow Thread Group 1-7,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,109,0,0
+1776773354804,5,Get Me Request,401,,Login Flow Thread Group 1-7,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776773355193,10,Register User,400,,Login Flow Thread Group 1-8,text,false,,363,307,1,1,http://localhost:8080/api/auth/register,9,0,1
+1776773355203,123,Login Request,200,,Login Flow Thread Group 1-8,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,123,0,1
+1776773355327,5,Get Me Request,401,,Login Flow Thread Group 1-8,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776773355333,112,Login Request,200,,Login Flow Thread Group 1-8,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,112,0,0
+1776773355446,6,Get Me Request,401,,Login Flow Thread Group 1-8,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,6,0,0
+1776773355453,110,Login Request,200,,Login Flow Thread Group 1-8,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,110,0,0
+1776773355564,5,Get Me Request,401,,Login Flow Thread Group 1-8,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776773355570,111,Login Request,200,,Login Flow Thread Group 1-8,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,111,0,0
+1776773355682,5,Get Me Request,401,,Login Flow Thread Group 1-8,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776773355688,131,Login Request,200,,Login Flow Thread Group 1-8,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,131,0,0
+1776773355819,5,Get Me Request,401,,Login Flow Thread Group 1-8,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776773356193,9,Register User,400,,Login Flow Thread Group 1-9,text,false,,363,307,1,1,http://localhost:8080/api/auth/register,9,0,1
+1776773356203,123,Login Request,200,,Login Flow Thread Group 1-9,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,123,0,1
+1776773356327,6,Get Me Request,401,,Login Flow Thread Group 1-9,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,6,0,0
+1776773356334,119,Login Request,200,,Login Flow Thread Group 1-9,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,119,0,0
+1776773356454,4,Get Me Request,401,,Login Flow Thread Group 1-9,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,4,0,0
+1776773356459,112,Login Request,200,,Login Flow Thread Group 1-9,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,112,0,0
+1776773356572,9,Get Me Request,401,,Login Flow Thread Group 1-9,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776773356581,116,Login Request,200,,Login Flow Thread Group 1-9,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,116,0,0
+1776773356697,5,Get Me Request,401,,Login Flow Thread Group 1-9,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776773356703,109,Login Request,200,,Login Flow Thread Group 1-9,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,109,0,0
+1776773356813,5,Get Me Request,401,,Login Flow Thread Group 1-9,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776773357195,11,Register User,400,,Login Flow Thread Group 1-10,text,false,,364,309,1,1,http://localhost:8080/api/auth/register,11,0,1
+1776773357207,121,Login Request,200,,Login Flow Thread Group 1-10,text,true,,628,246,1,1,http://localhost:8080/api/auth/login,121,0,1
+1776773357329,5,Get Me Request,401,,Login Flow Thread Group 1-10,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,4,0,0
+1776773357334,112,Login Request,200,,Login Flow Thread Group 1-10,text,true,,628,246,1,1,http://localhost:8080/api/auth/login,111,0,0
+1776773357446,5,Get Me Request,401,,Login Flow Thread Group 1-10,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776773357452,109,Login Request,200,,Login Flow Thread Group 1-10,text,true,,628,246,1,1,http://localhost:8080/api/auth/login,109,0,0
+1776773357562,5,Get Me Request,401,,Login Flow Thread Group 1-10,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776773357567,109,Login Request,200,,Login Flow Thread Group 1-10,text,true,,628,246,1,1,http://localhost:8080/api/auth/login,109,0,0
+1776773357677,4,Get Me Request,401,,Login Flow Thread Group 1-10,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,4,0,0
+1776773357682,120,Login Request,200,,Login Flow Thread Group 1-10,text,true,,628,246,1,1,http://localhost:8080/api/auth/login,120,0,0
+1776773357803,7,Get Me Request,401,,Login Flow Thread Group 1-10,text,false,"Test failed: code expected to equal /
+
+****** received  : [[[401]]]
+
+****** comparison: [[[200]]]
+
+/",446,164,1,1,http://localhost:8080/api/auth/me,7,0,0

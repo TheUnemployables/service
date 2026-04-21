@@ -5,31 +5,27 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
-import org.testcontainers.containers.MongoDBContainer;
-import org.testcontainers.junit.jupiter.Testcontainers;
 
-/**
- * Base class for integration tests that need a real MongoDB database.
- * Uses Testcontainers to spin up a MongoDB instance in Docker.
- */
+import de.flapdoodle.embed.mongo.distribution.Version;
+import de.flapdoodle.embed.mongo.transitions.Mongod;
+import de.flapdoodle.embed.mongo.transitions.RunningMongodProcess;
+import de.flapdoodle.reverse.TransitionWalker;
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-@Testcontainers
 @Tag("IntegrationTest")
 public abstract class IntegrationTestBase {
-    private static final MongoDBContainer mongoDBContainer =
-            new MongoDBContainer("mongo:6.0.20")
-                    .withExposedPorts(27017)
-                    .withSharding()
-                    .withLabel("ro.unibuc.prodeng", "integration-test-mongo");
+
+    private static final TransitionWalker.ReachedState<RunningMongodProcess> MONGOD;
 
     static {
-        mongoDBContainer.start();
+        MONGOD = Mongod.instance().start(Version.Main.V7_0);
+        Runtime.getRuntime().addShutdownHook(new Thread(MONGOD::close));
     }
 
     @DynamicPropertySource
-    static void setProperties(DynamicPropertyRegistry registry) {
-        String mongoUrl = "mongodb://localhost:" + mongoDBContainer.getMappedPort(27017);
-        registry.add("mongodb.connection.url", () -> mongoUrl);
+    static void mongoProperties(DynamicPropertyRegistry registry) {
+        var addr = MONGOD.current().getServerAddress();
+        registry.add("mongodb.connection.url", () -> "mongodb://" + addr.getHost() + ":" + addr.getPort());
     }
 }

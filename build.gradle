@@ -14,11 +14,11 @@ java {
 
 tasks.withType(JavaCompile).configureEach {
 	options.fork = true
-	options.forkOptions.executable = '/usr/lib/jvm/java-21-openjdk/bin/javac'
+	options.forkOptions.executable = '/usr/lib/jvm/msopenjdk-current/bin/javac'
 }
 
 tasks.withType(Test).configureEach {
-	executable = '/usr/lib/jvm/java-21-openjdk/bin/java'
+	executable = '/usr/lib/jvm/msopenjdk-current/bin/java'
 }
 
 repositories {
@@ -51,6 +51,7 @@ dependencies {
 	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo:4.18.0'
 	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
 	testImplementation 'org.testcontainers:junit-jupiter'
 	testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
