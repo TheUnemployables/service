@@ -69,7 +69,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                     sh 'echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin'
-                    sh "docker push ${DOCKER_IMAGE}:${IMAGE_TAG}"
+                    sh "docker push ${DOCKER_IMAGE}:${IMAGE_TAG} || (echo 'Push failed — check Docker Hub credentials and repo name'; exit 1)"
                     sh "docker push ${DOCKER_IMAGE}:latest"
                 }
             }
