@@ -1,5 +1,5 @@
 pipeline {
-    agent none
+    agent any
 
     options {
         timestamps()
@@ -7,16 +7,14 @@ pipeline {
         disableConcurrentBuilds()
     }
 
+    environment {
+        JAVA_HOME = '/opt/java/openjdk'
+        PATH = "${env.JAVA_HOME}/bin:${env.PATH}"
+    }
+
     stages {
 
         stage('Unit Tests & Build') {
-            agent {
-                docker {
-                    image 'gradle:8.12.0-jdk21'
-                    args '-v gradle-cache:/root/.gradle'
-                    reuseNode false
-                }
-            }
             steps {
                 sh './gradlew clean test build -x javadoc'
             }
@@ -32,13 +30,6 @@ pipeline {
         }
 
         stage('Integration Tests') {
-            agent {
-                docker {
-                    image 'gradle:8.12.0-jdk21'
-                    args '-v gradle-cache:/root/.gradle'
-                    reuseNode false
-                }
-            }
             steps {
                 sh './gradlew testIT'
             }
@@ -50,7 +41,6 @@ pipeline {
         }
 
         stage('Build Docker Image') {
-            agent any
             steps {
                 sh 'docker build -t prod-eng-img .'
             }
