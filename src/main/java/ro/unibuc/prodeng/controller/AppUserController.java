@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
@@ -14,6 +15,7 @@ import ro.unibuc.prodeng.request.LoginRequest;
 import ro.unibuc.prodeng.request.RegisterRequest;
 import ro.unibuc.prodeng.response.AppUserResponse;
 import ro.unibuc.prodeng.response.LoginResponse;
+import ro.unibuc.prodeng.response.UserProfileResponse;
 import ro.unibuc.prodeng.service.AppUserService;
 
 @RestController
@@ -43,6 +45,12 @@ public class AppUserController {
     public ResponseEntity<Void> forgotPassword(@Valid @RequestBody ForgotPasswordRequest req) {
         appUserService.forgotPassword(req);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity<UserProfileResponse> getMe(Authentication authentication) throws EntityNotFoundException {
+        String userId = (String) authentication.getPrincipal();
+        return ResponseEntity.ok(appUserService.getProfile(userId));
     }
 
     @DeleteMapping("/{id}")
