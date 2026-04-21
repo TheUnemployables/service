@@ -1,7 +1,6 @@
 services:
   prod-eng:
-    image: prod-eng-img
-    build: .
+    image: ${DOCKER_IMAGE:-theunemployables/prod-eng}:${IMAGE_TAG:-latest}
     ports:
       - 8080:8080
       # Port for debug
@@ -10,6 +9,8 @@ services:
       ENVIRONMENT_NAME: local
       MONGODB_CONECTION_URL: mongodb://root:example@mongo:27017/
     restart: always
+    depends_on:
+      - mongo
     profiles:
       - "prod-eng-service"
   jenkins:
@@ -19,11 +20,15 @@ services:
       - 50000:50000
     restart: on-failure
     volumes:
-      - /workspaces/jenkins_config:/var/jenkins_home
+      - type: bind
+        source: ${JENKINS_CONFIG_ROOT:-/workspaces/jenkins_config}
+        target: /var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
       - /usr/bin/docker:/usr/bin/docker
       - ./Dockerfile:/Dockerfile
       - /usr/libexec/docker/cli-plugins/docker-compose:/usr/libexec/docker/cli-plugins/docker-compose
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     profiles:
       - "prod-eng-service"
     user: 0:0
