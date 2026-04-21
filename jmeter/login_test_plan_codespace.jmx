@@ -91,14 +91,19 @@
             </collectionProp>
           </HeaderManager>
           <hashTree/>
-          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Extract JWT Token" enabled="true">
-            <stringProp name="RegexExtractor.referenceName">jwt_token</stringProp>
-            <stringProp name="RegexExtractor.regex">"token":"([^"]+)"</stringProp>
-            <stringProp name="RegexExtractor.template">$1$</stringProp>
-            <stringProp name="RegexExtractor.default">TOKEN_NOT_FOUND</stringProp>
-            <stringProp name="RegexExtractor.match_number">1</stringProp>
-            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-          </RegexExtractor>
+          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="Extract JWT Token" enabled="true">
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="script">
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+String body = prev.getResponseDataAsString()
+Matcher m = Pattern.compile(/"token":"([^"]+)"/).matcher(body)
+vars.put("jwt_token", m.find() ? m.group(1) : "TOKEN_NOT_FOUND")
+            </stringProp>
+            <stringProp name="scriptLanguage">groovy</stringProp>
+          </JSR223PostProcessor>
           <hashTree/>
           <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assert Login 200">
             <collectionProp name="Asserion.test_strings">
