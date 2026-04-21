@@ -1,6 +1,6 @@
 services:
   prod-eng:
-    image: ${DOCKER_IMAGE:-theunemployables/prod-eng}:${IMAGE_TAG:-latest}
+    image: ${DOCKER_IMAGE:-theunemployables/service}:${IMAGE_TAG:-latest}
     ports:
       - 8080:8080
       # Port for debug
