@@ -83,7 +83,8 @@ pipeline {
                         returnStdout: true
                     ).trim()
                     sh """
-                        docker rm -f service-prod-eng-1 2>/dev/null || true
+                        docker rm -f service-prod-eng-1 service-prod-eng-fixed 2>/dev/null || true
+                        sleep 2
                         docker run -d \
                           --name service-prod-eng-1 \
                           --network service_default \
