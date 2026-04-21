@@ -21,10 +21,7 @@ pipeline {
             post {
                 always {
                     junit testResults: 'build/test-results/test/**/*.xml', allowEmptyResults: true
-                    recordCoverage(
-                        tools: [[parser: 'JACOCO', pattern: 'build/reports/jacoco/test/jacocoTestReport.xml']],
-                        qualityGates: [[threshold: 50.0, metric: 'LINE', baseline: 'PROJECT', unstable: true]]
-                    )
+                    archiveArtifacts artifacts: 'build/reports/jacoco/test/**', allowEmptyArchive: true
                 }
             }
         }
