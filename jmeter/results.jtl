@@ -1,0 +1,111 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1776778042304,22,Register User,400,,Login Flow Thread Group 1-1,text,false,,363,307,1,1,http://localhost:8080/api/auth/register,19,0,12
+1776778042327,66,Login Request,200,,Login Flow Thread Group 1-1,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,66,0,0
+1776778042785,4,Get Me Request,200,,Login Flow Thread Group 1-1,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,4,0,0
+1776778042789,65,Login Request,200,,Login Flow Thread Group 1-1,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,65,0,0
+1776778042855,5,Get Me Request,200,,Login Flow Thread Group 1-1,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776778042860,66,Login Request,200,,Login Flow Thread Group 1-1,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,66,0,0
+1776778042927,4,Get Me Request,200,,Login Flow Thread Group 1-1,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,4,0,0
+1776778042931,66,Login Request,200,,Login Flow Thread Group 1-1,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,65,0,0
+1776778042998,4,Get Me Request,200,,Login Flow Thread Group 1-1,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,4,0,0
+1776778043002,65,Login Request,200,,Login Flow Thread Group 1-1,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,65,0,0
+1776778043068,4,Get Me Request,200,,Login Flow Thread Group 1-1,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,4,0,0
+1776778043240,8,Register User,400,,Login Flow Thread Group 1-2,text,false,,363,307,1,1,http://localhost:8080/api/auth/register,8,0,1
+1776778043249,74,Login Request,200,,Login Flow Thread Group 1-2,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,74,0,1
+1776778043324,3,Get Me Request,200,,Login Flow Thread Group 1-2,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,3,0,0
+1776778043328,67,Login Request,200,,Login Flow Thread Group 1-2,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,67,0,0
+1776778043396,3,Get Me Request,200,,Login Flow Thread Group 1-2,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,3,0,0
+1776778043400,65,Login Request,200,,Login Flow Thread Group 1-2,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,65,0,0
+1776778043466,4,Get Me Request,200,,Login Flow Thread Group 1-2,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,4,0,0
+1776778043470,67,Login Request,200,,Login Flow Thread Group 1-2,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,67,0,0
+1776778043539,5,Get Me Request,200,,Login Flow Thread Group 1-2,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776778043544,67,Login Request,200,,Login Flow Thread Group 1-2,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,66,0,0
+1776778043611,4,Get Me Request,200,,Login Flow Thread Group 1-2,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,4,0,0
+1776778044238,8,Register User,400,,Login Flow Thread Group 1-3,text,false,,363,307,1,1,http://localhost:8080/api/auth/register,7,0,0
+1776778044246,80,Login Request,200,,Login Flow Thread Group 1-3,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,80,0,1
+1776778044327,4,Get Me Request,200,,Login Flow Thread Group 1-3,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,4,0,0
+1776778044331,65,Login Request,200,,Login Flow Thread Group 1-3,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,65,0,0
+1776778044397,3,Get Me Request,200,,Login Flow Thread Group 1-3,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,3,0,0
+1776778044401,64,Login Request,200,,Login Flow Thread Group 1-3,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,64,0,0
+1776778044466,5,Get Me Request,200,,Login Flow Thread Group 1-3,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776778044472,65,Login Request,200,,Login Flow Thread Group 1-3,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,65,0,0
+1776778044538,3,Get Me Request,200,,Login Flow Thread Group 1-3,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,3,0,0
+1776778044542,64,Login Request,200,,Login Flow Thread Group 1-3,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,64,0,0
+1776778044607,5,Get Me Request,200,,Login Flow Thread Group 1-3,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776778045236,5,Register User,400,,Login Flow Thread Group 1-4,text,false,,363,307,1,1,http://localhost:8080/api/auth/register,5,0,1
+1776778045242,70,Login Request,200,,Login Flow Thread Group 1-4,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,70,0,0
+1776778045313,4,Get Me Request,200,,Login Flow Thread Group 1-4,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,4,0,0
+1776778045318,65,Login Request,200,,Login Flow Thread Group 1-4,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,65,0,0
+1776778045385,4,Get Me Request,200,,Login Flow Thread Group 1-4,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,4,0,0
+1776778045390,65,Login Request,200,,Login Flow Thread Group 1-4,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,65,0,0
+1776778045457,3,Get Me Request,200,,Login Flow Thread Group 1-4,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,3,0,0
+1776778045461,70,Login Request,200,,Login Flow Thread Group 1-4,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,70,0,0
+1776778045531,5,Get Me Request,200,,Login Flow Thread Group 1-4,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776778045537,66,Login Request,200,,Login Flow Thread Group 1-4,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,66,0,0
+1776778045604,4,Get Me Request,200,,Login Flow Thread Group 1-4,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,4,0,0
+1776778046238,8,Register User,400,,Login Flow Thread Group 1-5,text,false,,363,307,1,1,http://localhost:8080/api/auth/register,8,0,1
+1776778046247,74,Login Request,200,,Login Flow Thread Group 1-5,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,74,0,0
+1776778046322,5,Get Me Request,200,,Login Flow Thread Group 1-5,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776778046327,66,Login Request,200,,Login Flow Thread Group 1-5,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,66,0,0
+1776778046394,3,Get Me Request,200,,Login Flow Thread Group 1-5,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,3,0,0
+1776778046398,65,Login Request,200,,Login Flow Thread Group 1-5,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,65,0,0
+1776778046464,7,Get Me Request,200,,Login Flow Thread Group 1-5,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,7,0,0
+1776778046471,67,Login Request,200,,Login Flow Thread Group 1-5,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,67,0,0
+1776778046539,3,Get Me Request,200,,Login Flow Thread Group 1-5,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,3,0,0
+1776778046543,65,Login Request,200,,Login Flow Thread Group 1-5,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,64,0,0
+1776778046608,4,Get Me Request,200,,Login Flow Thread Group 1-5,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,4,0,0
+1776778047240,8,Register User,400,,Login Flow Thread Group 1-6,text,false,,363,307,1,1,http://localhost:8080/api/auth/register,8,0,1
+1776778047249,71,Login Request,200,,Login Flow Thread Group 1-6,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,71,0,1
+1776778047321,4,Get Me Request,200,,Login Flow Thread Group 1-6,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,4,0,0
+1776778047325,65,Login Request,200,,Login Flow Thread Group 1-6,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,65,0,0
+1776778047391,3,Get Me Request,200,,Login Flow Thread Group 1-6,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,3,0,0
+1776778047395,65,Login Request,200,,Login Flow Thread Group 1-6,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,65,0,0
+1776778047461,3,Get Me Request,200,,Login Flow Thread Group 1-6,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,3,0,0
+1776778047465,64,Login Request,200,,Login Flow Thread Group 1-6,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,64,0,0
+1776778047530,4,Get Me Request,200,,Login Flow Thread Group 1-6,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,4,0,0
+1776778047534,65,Login Request,200,,Login Flow Thread Group 1-6,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,65,0,0
+1776778047600,5,Get Me Request,200,,Login Flow Thread Group 1-6,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776778048238,8,Register User,400,,Login Flow Thread Group 1-7,text,false,,363,307,1,1,http://localhost:8080/api/auth/register,8,0,1
+1776778048246,74,Login Request,200,,Login Flow Thread Group 1-7,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,74,0,1
+1776778048321,3,Get Me Request,200,,Login Flow Thread Group 1-7,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,3,0,0
+1776778048325,65,Login Request,200,,Login Flow Thread Group 1-7,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,65,0,0
+1776778048391,4,Get Me Request,200,,Login Flow Thread Group 1-7,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,4,0,0
+1776778048395,65,Login Request,200,,Login Flow Thread Group 1-7,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,65,0,0
+1776778048462,3,Get Me Request,200,,Login Flow Thread Group 1-7,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,3,0,0
+1776778048466,65,Login Request,200,,Login Flow Thread Group 1-7,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,65,0,0
+1776778048531,5,Get Me Request,200,,Login Flow Thread Group 1-7,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776778048537,65,Login Request,200,,Login Flow Thread Group 1-7,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,65,0,0
+1776778048603,4,Get Me Request,200,,Login Flow Thread Group 1-7,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,4,0,0
+1776778049239,14,Register User,400,,Login Flow Thread Group 1-8,text,false,,363,307,1,1,http://localhost:8080/api/auth/register,13,0,1
+1776778049253,97,Login Request,200,,Login Flow Thread Group 1-8,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,96,0,1
+1776778049350,5,Get Me Request,200,,Login Flow Thread Group 1-8,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776778049355,66,Login Request,200,,Login Flow Thread Group 1-8,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,65,0,0
+1776778049422,3,Get Me Request,200,,Login Flow Thread Group 1-8,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,3,0,0
+1776778049426,65,Login Request,200,,Login Flow Thread Group 1-8,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,65,0,0
+1776778049492,3,Get Me Request,200,,Login Flow Thread Group 1-8,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,3,0,0
+1776778049496,65,Login Request,200,,Login Flow Thread Group 1-8,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,65,0,0
+1776778049562,4,Get Me Request,200,,Login Flow Thread Group 1-8,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,3,0,0
+1776778049566,64,Login Request,200,,Login Flow Thread Group 1-8,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,64,0,0
+1776778049631,5,Get Me Request,200,,Login Flow Thread Group 1-8,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776778050238,8,Register User,400,,Login Flow Thread Group 1-9,text,false,,363,307,1,1,http://localhost:8080/api/auth/register,8,0,1
+1776778050249,75,Login Request,200,,Login Flow Thread Group 1-9,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,75,0,1
+1776778050325,4,Get Me Request,200,,Login Flow Thread Group 1-9,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,4,0,0
+1776778050329,66,Login Request,200,,Login Flow Thread Group 1-9,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,66,0,0
+1776778050396,4,Get Me Request,200,,Login Flow Thread Group 1-9,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,4,0,0
+1776778050400,67,Login Request,200,,Login Flow Thread Group 1-9,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,67,0,0
+1776778050468,4,Get Me Request,200,,Login Flow Thread Group 1-9,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,4,0,0
+1776778050472,65,Login Request,200,,Login Flow Thread Group 1-9,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,65,0,0
+1776778050538,4,Get Me Request,200,,Login Flow Thread Group 1-9,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,4,0,0
+1776778050543,66,Login Request,200,,Login Flow Thread Group 1-9,text,true,,625,245,1,1,http://localhost:8080/api/auth/login,66,0,0
+1776778050610,4,Get Me Request,200,,Login Flow Thread Group 1-9,text,true,,448,364,1,1,http://localhost:8080/api/auth/me,3,0,0
+1776778051238,8,Register User,400,,Login Flow Thread Group 1-10,text,false,,364,309,1,1,http://localhost:8080/api/auth/register,7,0,1
+1776778051246,76,Login Request,200,,Login Flow Thread Group 1-10,text,true,,628,246,1,1,http://localhost:8080/api/auth/login,76,0,1
+1776778051323,5,Get Me Request,200,,Login Flow Thread Group 1-10,text,true,,450,365,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776778051328,67,Login Request,200,,Login Flow Thread Group 1-10,text,true,,628,246,1,1,http://localhost:8080/api/auth/login,66,0,0
+1776778051395,5,Get Me Request,200,,Login Flow Thread Group 1-10,text,true,,450,365,1,1,http://localhost:8080/api/auth/me,5,0,0
+1776778051400,65,Login Request,200,,Login Flow Thread Group 1-10,text,true,,628,246,1,1,http://localhost:8080/api/auth/login,65,0,0
+1776778051466,4,Get Me Request,200,,Login Flow Thread Group 1-10,text,true,,450,365,1,1,http://localhost:8080/api/auth/me,3,0,0
+1776778051470,65,Login Request,200,,Login Flow Thread Group 1-10,text,true,,628,246,1,1,http://localhost:8080/api/auth/login,64,0,0
+1776778051536,3,Get Me Request,200,,Login Flow Thread Group 1-10,text,true,,450,365,1,1,http://localhost:8080/api/auth/me,3,0,0
+1776778051539,67,Login Request,200,,Login Flow Thread Group 1-10,text,true,,628,246,1,1,http://localhost:8080/api/auth/login,67,0,0
+1776778051607,3,Get Me Request,200,,Login Flow Thread Group 1-10,text,true,,450,365,1,1,http://localhost:8080/api/auth/me,3,0,0
