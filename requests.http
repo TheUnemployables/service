@@ -98,3 +98,50 @@ DELETE http://localhost:8080/api/todos/{{createTodo.response.body.id}}
 
 ### Delete user
 DELETE http://localhost:8080/api/users/{{createUser.response.body.id}}
+
+
+# ==========================================
+# Component Controller Endpoints
+# ==========================================
+
+### Create a new component (run this first to populate variables)
+# @name createComponent
+POST http://localhost:8080/api/components
+Content-Type: application/json
+
+{
+    "name": "Arduino Uno",
+    "description": "Placa de dezvoltare microcontroller",
+    "category": "Electronice",
+    "photoUrls": ["https://example.com/arduino.jpg"],
+    "quantity": 15,
+    "isConsumable": false,
+    "tags": ["arduino", "microcontroller", "diy"],
+    "infoMarkdown": "**Atentie:** Foloseste cablu USB-B."
+}
+
+### Get all components (with default pagination)
+GET http://localhost:8080/api/components
+
+### Get components filtered by category and search term
+GET http://localhost:8080/api/components?category=Electronice&search=arduino
+
+### Get component by ID (uses ID from createComponent response)
+GET http://localhost:8080/api/components/{{createComponent.response.body.id}}
+
+### Update component details
+PUT http://localhost:8080/api/components/{{createComponent.response.body.id}}
+Content-Type: application/json
+
+{
+    "name": "Arduino Uno Rev3",
+    "description": "Versiunea actualizata, placa de dezvoltare",
+    "category": "Microcontrollere",
+    "photoUrls": ["https://example.com/arduino_r3.jpg"],
+    "isConsumable": false,
+    "tags": ["arduino", "microcontroller", "rev3"],
+    "infoMarkdown": "**Atentie:** Cablu USB-B inclus."
+}
+
+### Soft-delete component
+DELETE http://localhost:8080/api/components/{{createComponent.response.body.id}}

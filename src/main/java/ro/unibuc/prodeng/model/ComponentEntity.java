@@ -25,6 +25,7 @@ public class ComponentEntity {
     private List<String> tags;
     private String infoMarkdown;
     private Instant createdAt = Instant.now(); 
+    private Boolean active = true;
 
 
     public void setQuantity(Integer quantity) {
