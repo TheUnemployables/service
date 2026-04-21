@@ -14,7 +14,7 @@ if ! docker info &>/dev/null; then
   echo "dockerd ready"
 fi
 
-mkdir -p /workspaces/jenkins_config
+mkdir -p "${JENKINS_CONFIG_ROOT:-/workspaces/jenkins_config}"
 
 # Start mongo + jenkins (not the app — it has broken DNS in compose)
 docker compose --profile mongo --profile prod-eng-service up -d --scale prod-eng=0 2>/dev/null || \
