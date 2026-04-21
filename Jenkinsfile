@@ -8,7 +8,7 @@ pipeline {
     }
 
     environment {
-        DOCKER_IMAGE = 'theunemployables/service'
+        DOCKER_IMAGE = 'octavalexandru/service'
         JAVA_HOME    = '/opt/java/openjdk'
         PATH         = "${env.JAVA_HOME}/bin:${env.PATH}"
     }
