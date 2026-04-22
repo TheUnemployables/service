@@ -14,7 +14,7 @@ fi
 mkdir -p "${JENKINS_CONFIG_ROOT:-/workspaces/jenkins_config}"
 
 # Start mongo
-docker compose --profile mongo up -d
+docker compose -p service --profile mongo up -d
 
 echo "Waiting for mongo..."
 until docker exec service-mongo-1 mongosh --quiet --eval "db.adminCommand('ping')" &>/dev/null; do
@@ -29,9 +29,9 @@ echo "Mongo IP: $MONGO_IP"
 export MONGO_IP
 export DOCKER_IMAGE="${DOCKER_IMAGE:-octavalexandru/service}"
 export IMAGE_TAG="${IMAGE_TAG:-latest}"
-docker compose --profile prod-eng-service up -d --no-deps --force-recreate prod-eng
+docker compose -p service --profile prod-eng-service up -d --no-deps --force-recreate prod-eng
 echo "App started at http://localhost:8080"
 
 # Start Jenkins (network_mode: host set in compose so it uses dev container's NIC)
-docker compose --profile prod-eng-service up -d --no-deps jenkins
+docker compose -p service --profile prod-eng-service up -d --no-deps jenkins
 echo "Jenkins started at http://localhost:8082"

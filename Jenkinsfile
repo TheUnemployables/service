@@ -84,7 +84,7 @@ pipeline {
                     ).trim()
                     sh """
                         MONGO_IP=${mongoIp} IMAGE_TAG=${IMAGE_TAG} DOCKER_IMAGE=${DOCKER_IMAGE} \
-                            docker compose --profile prod-eng-service up -d --no-deps --force-recreate prod-eng
+                            docker compose -p service --profile prod-eng-service up -d --no-deps --force-recreate prod-eng
                         timeout 60 bash -c 'until curl -sf http://localhost:8080/actuator/health; do sleep 3; done'
                     """
                 }
