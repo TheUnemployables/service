@@ -1,6 +1,6 @@
 services:
   prod-eng:
-    image: ${DOCKER_IMAGE:-theunemployables/service}:${IMAGE_TAG:-latest}
+    image: ${DOCKER_IMAGE:-octavalexandru/service}:${IMAGE_TAG:-latest}
     ports:
       - 8080:8080
       # Port for debug
@@ -8,6 +8,9 @@ services:
     environment:
       ENVIRONMENT_NAME: local
       MONGODB_CONECTION_URL: mongodb://root:example@mongo:27017/
+    extra_hosts:
+      # Embedded DNS is broken in DinD (--iptables=false); set MONGO_IP at runtime
+      - "mongo:${MONGO_IP:-172.19.0.2}"
     restart: always
     depends_on:
       - mongo
@@ -15,9 +18,10 @@ services:
       - "prod-eng-service"
   jenkins:
     image: jenkins/jenkins
-    ports:
-      - 8082:8080
-      - 50000:50000
+    # Host networking bypasses broken inner-bridge NAT in DinD so Jenkins can
+    # reach the internet. Ports/extra_hosts are incompatible with network_mode host.
+    network_mode: host
+    command: --httpPort=8082
     restart: on-failure
     volumes:
       - type: bind
@@ -27,8 +31,6 @@ services:
       - /usr/bin/docker:/usr/bin/docker
       - ./Dockerfile:/Dockerfile
       - /usr/libexec/docker/cli-plugins/docker-compose:/usr/libexec/docker/cli-plugins/docker-compose
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
     profiles:
       - "prod-eng-service"
     user: 0:0

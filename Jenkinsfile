@@ -83,18 +83,8 @@ pipeline {
                         returnStdout: true
                     ).trim()
                     sh """
-                        docker rm -f service-prod-eng-1 service-prod-eng-fixed 2>/dev/null || true
-                        sleep 2
-                        docker run -d \
-                          --name service-prod-eng-1 \
-                          --network service_default \
-                          -p 8080:8080 \
-                          -p 5005:5005 \
-                          --add-host mongo:${mongoIp} \
-                          -e ENVIRONMENT_NAME=local \
-                          -e MONGODB_CONECTION_URL=mongodb://root:example@${mongoIp}:27017/ \
-                          --restart always \
-                          ${DOCKER_IMAGE}:${IMAGE_TAG}
+                        MONGO_IP=${mongoIp} IMAGE_TAG=${IMAGE_TAG} DOCKER_IMAGE=${DOCKER_IMAGE} \
+                            docker compose --profile prod-eng-service up -d --no-deps --force-recreate prod-eng
                         timeout 60 bash -c 'until curl -sf http://localhost:8080/actuator/health; do sleep 3; done'
                     """
                 }
