@@ -83,6 +83,7 @@ pipeline {
                         returnStdout: true
                     ).trim()
                     sh """
+                        docker rm -f service-prod-eng-1 2>/dev/null || true
                         MONGO_IP=${mongoIp} IMAGE_TAG=${IMAGE_TAG} DOCKER_IMAGE=${DOCKER_IMAGE} \
                             docker compose -p service --profile prod-eng-service up -d --no-deps --force-recreate prod-eng
                         timeout 60 bash -c 'until curl -sf http://localhost:8080/actuator/health; do sleep 3; done'
