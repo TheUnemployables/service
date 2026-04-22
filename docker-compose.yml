@@ -12,8 +12,6 @@ services:
       # Embedded DNS is broken in DinD (--iptables=false); set MONGO_IP at runtime
       - "mongo:${MONGO_IP:-172.19.0.2}"
     restart: always
-    depends_on:
-      - mongo
     profiles:
       - "prod-eng-service"
   jenkins:
