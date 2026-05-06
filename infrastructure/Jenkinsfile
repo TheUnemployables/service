@@ -50,7 +50,7 @@ pipeline {
                     if (parts.size() != 3) {
                         error "Latest tag [${latestTag}] is not a semantic version x.y.z"
                     }
-//
+
                     def major = parts[0].toInteger()
                     def minor = parts[1].toInteger()
                     def patch = parts[2].toInteger()
