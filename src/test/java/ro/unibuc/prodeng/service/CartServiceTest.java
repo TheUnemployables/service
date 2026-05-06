@@ -197,7 +197,7 @@ class CartServiceTest {
         mockCart.setStatus(CartEntity.CartStatus.OPEN);
         mockCart.setItems(new ArrayList<>());
         mockCart.getItems().add(new CartEntity.CartItem(compId, 1));
-
+// modificare jenkins 
         when(componentRepository.findById(compId)).thenReturn(Optional.of(mockComponent));
         when(cartRepository.findByUserIDAndStatus(userId, CartEntity.CartStatus.OPEN)).thenReturn(Optional.of(mockCart));
         when(cartRepository.save(any(CartEntity.class))).thenReturn(mockCart);
