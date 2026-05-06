@@ -3,7 +3,7 @@ pipeline {
 
     tools {
         jdk 'jdk21'
-        gradle 'gradle-8' // Ensure this matches the Gradle tool name configured in Jenkins
+        gradle 'gradle-8' 
     }
 
     environment {
