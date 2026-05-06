@@ -54,7 +54,7 @@ pipeline {
                     def major = parts[0].toInteger()
                     def minor = parts[1].toInteger()
                     def patch = parts[2].toInteger()
-                    env.IMAGE_TAG = "${major}.${minor + 1}.${patch}"
+                    env.IMAGE_TAG = "vv${major}.${minor + 1}.${patch}"
                     echo "Building version: ${env.IMAGE_TAG}"
                 }
             }
