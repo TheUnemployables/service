@@ -1,39 +1,81 @@
 pipeline {
     agent any
-    
+
+    tools {
+        jdk 'jdk21'
+        gradle 'gradle-8' // Ensure this matches the Gradle tool name configured in Jenkins
+    }
+
     environment {
-        DOCKER_PASSWORD = credentials("docker_password")
+        DOCKER_HUB_USERNAME = 'YOUR_DOCKERHUB_USERNAME'
+        DOCKER_PASSWORD = credentials('docker_password')
+        GITHUB_TOKEN = credentials('github_token')
     }
 
     stages {
-        stage('Compile') {
+        stage('Build') {
             steps {
-                sh './gradlew clean compileJava'
+                sh './gradlew clean build'
             }
         }
 
-        stage('Deploy Infrastructure') {
+        stage('Test') {
+            steps {
+                sh './gradlew test'
+            }
+        }
+
+        stage('Version & Tag') {
             steps {
                 script {
-                    // Forțăm oprirea oricărui container mongo care a rămas "agățat"
-                    sh 'docker compose down mongo || true'
-                    // Pornim mongo proaspăt
-                    sh 'docker compose up -d mongo'
-                    sh 'sleep 15'
+                    sh 'git fetch --tags'
+                    def latestTag = sh(script: 'git tag | sort -V | tail -1 || true', returnStdout: true).trim()
+                    if (!latestTag) {
+                        latestTag = '0.0.0'
+                    }
+                    latestTag = latestTag.replaceFirst(/^v/, '')
+                    def parts = latestTag.tokenize('.')
+                    if (parts.size() != 3) {
+                        error "Latest tag [${latestTag}] is not a semantic version x.y.z"
+                    }
+
+                    def major = parts[0].toInteger()
+                    def minor = parts[1].toInteger()
+                    def patch = parts[2].toInteger()
+                    env.IMAGE_TAG = "${major}.${minor + 1}.${patch}"
+                    echo "Building version: ${env.IMAGE_TAG}"
                 }
             }
         }
 
-        stage('Verify & All Tests') {
+        stage('Build Docker Image') {
             steps {
-                sh './gradlew test' 
+                sh 'docker build -t $DOCKER_HUB_USERNAME/prod-eng-img:$IMAGE_TAG .'
+            }
+        }
+
+        stage('Push to Docker Hub') {
+            steps {
+                sh '''
+                    echo $DOCKER_PASSWORD_PSW | docker login -u $DOCKER_HUB_USERNAME --password-stdin
+                    docker push $DOCKER_HUB_USERNAME/prod-eng-img:$IMAGE_TAG
+                '''
+            }
+        }
+
+        stage('Tag Release') {
+            steps {
+                sh '''
+                    git tag $IMAGE_TAG
+                    git push https://$GITHUB_TOKEN_PSW@github.com/UNIBUC-PROD-ENGINEERING/service.git $IMAGE_TAG
+                '''
             }
         }
     }
 
     post {
         always {
-            sh 'docker compose down'
+            sh 'docker logout'
         }
     }
 }
