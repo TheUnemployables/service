@@ -25,6 +25,19 @@ pipeline {
             }
         }
 
+        stage('Validate Configuration') {
+            steps {
+                script {
+                    if (env.DOCKER_HUB_USERNAME == 'YOUR_DOCKERHUB_USERNAME') {
+                        error "Please set DOCKER_HUB_USERNAME in infrastructure/Jenkinsfile to your actual Docker Hub username."
+                    }
+                    if (env.DOCKER_HUB_USERNAME =~ /[A-Z]/) {
+                        error "DOCKER_HUB_USERNAME must be lowercase for Docker image tags. Update infrastructure/Jenkinsfile."
+                    }
+                }
+            }
+        }
+
         stage('Version & Tag') {
             steps {
                 script {
