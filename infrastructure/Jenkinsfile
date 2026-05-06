@@ -7,7 +7,6 @@ pipeline {
     }
 
     environment {
-        DOCKER_HUB_USERNAME = 'YOUR_DOCKERHUB_USERNAME'
         DOCKER_PASSWORD = credentials('docker_password')
         GITHUB_TOKEN = credentials('github_token')
     }
@@ -28,11 +27,11 @@ pipeline {
         stage('Validate Configuration') {
             steps {
                 script {
-                    if (env.DOCKER_HUB_USERNAME == 'YOUR_DOCKERHUB_USERNAME') {
-                        error "Please set DOCKER_HUB_USERNAME in infrastructure/Jenkinsfile to your actual Docker Hub username."
+                    if (!env.DOCKER_PASSWORD_USR) {
+                        error "Please configure the docker_password credential in Jenkins as a Username with password credential."
                     }
-                    if (env.DOCKER_HUB_USERNAME =~ /[A-Z]/) {
-                        error "DOCKER_HUB_USERNAME must be lowercase for Docker image tags. Update infrastructure/Jenkinsfile."
+                    if (env.DOCKER_PASSWORD_USR =~ /[A-Z]/) {
+                        error "Your Docker Hub username in the docker_password credential must be lowercase."
                     }
                 }
             }
@@ -63,15 +62,15 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t $DOCKER_HUB_USERNAME/prod-eng-img:$IMAGE_TAG .'
+                sh 'docker build -t $DOCKER_PASSWORD_USR/prod-eng-img:$IMAGE_TAG .'
             }
         }
 
         stage('Push to Docker Hub') {
             steps {
                 sh '''
-                    echo $DOCKER_PASSWORD_PSW | docker login -u $DOCKER_HUB_USERNAME --password-stdin
-                    docker push $DOCKER_HUB_USERNAME/prod-eng-img:$IMAGE_TAG
+                    echo $DOCKER_PASSWORD_PSW | docker login -u $DOCKER_PASSWORD_USR --password-stdin
+                    docker push $DOCKER_PASSWORD_USR/prod-eng-img:$IMAGE_TAG
                 '''
             }
         }
