@@ -29,7 +29,7 @@ pipeline {
             steps {
                 script {
                     sh 'git fetch --tags'
-                    def latestTag = sh(script: 'git tag | sort -V | tail -1 || true', returnStdout: true).trim()
+                    def latestTag = sh(script: 'git tag | grep -E "^v?[0-9]+\.[0-9]+\.[0-9]+$" | sort -V | tail -1 || true', returnStdout: true).trim()
                     if (!latestTag) {
                         latestTag = '0.0.0'
                     }
