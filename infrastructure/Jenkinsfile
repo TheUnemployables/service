@@ -79,7 +79,7 @@ pipeline {
             steps {
                 sh '''
                     git tag $IMAGE_TAG
-                    git push https://$GITHUB_TOKEN_PSW@github.com/UNIBUC-PROD-ENGINEERING/service.git $IMAGE_TAG
+                    git push https://$GITHUB_TOKEN_PSW@github.com/TheUnemployables/service.git $IMAGE_TAG
                 '''
             }
         }
